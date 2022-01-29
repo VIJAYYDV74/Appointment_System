@@ -33,7 +33,7 @@ public class UserRepositoryTest {
         user.setLastName("Acorn");
 
         User savedUser = userRepository.save(user);
-        User existUser = entityManager.find(User.class, savedUser.getId());
+        User existUser = entityManager.find(User.class, savedUser.getUserid());
 
         assertThat(savedUser.getEmail()).isEqualTo(existUser.getEmail());
     }

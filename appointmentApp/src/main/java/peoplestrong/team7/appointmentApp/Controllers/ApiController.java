@@ -3,10 +3,7 @@ package peoplestrong.team7.appointmentApp.Controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import peoplestrong.team7.appointmentApp.Exception.UserAlreadyExistsException;
 import peoplestrong.team7.appointmentApp.Models.User;
@@ -34,7 +31,8 @@ public class ApiController {
         return "SignupForm";
     }
 
-    @PostMapping(value = "/processRegistration")
+    @RequestMapping(value = "/processRegistration", method = RequestMethod.POST)
+    @CrossOrigin(origins = "localhost:8080")
     public ResponseEntity<String> processRegistration(@RequestBody User user) throws UserAlreadyExistsException {
             String msg = regstService.processRegistration(user);
             return ResponseEntity.ok(msg);
