@@ -32,10 +32,25 @@ public class ApiController {
     }
 
     @RequestMapping(value = "/processRegistration", method = RequestMethod.POST)
-    @CrossOrigin(origins = "localhost:8080")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public ResponseEntity<String> processRegistration(@RequestBody User user) throws UserAlreadyExistsException {
             String msg = regstService.processRegistration(user);
             return ResponseEntity.ok(msg);
+    }
+
+    @PostMapping("/login")
+    public String loginUser(@RequestBody User user) {
+        User oAuthUser = userRepository.findByEmail(user.getEmail()).get();
+//        System.out.println(oAuthUser.getPassword() + " && " + user.getPassword() );
+        if(oAuthUser == null) {
+            return "Invalid Credentials";
+        }else{
+            if(user.getPassword().contentEquals(oAuthUser.getPassword())) {
+                return "Login Successful";
+            }else{
+                return "Invalid Credentials";
+            }
+        }
     }
 
 }
