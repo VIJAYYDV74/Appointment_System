@@ -1,6 +1,8 @@
 package peoplestrong.team7.appointmentApp.Models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -27,6 +29,11 @@ public class User {
 
     @Column(name = "hasbusiness")
     private Boolean hasBusiness;
+
+
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "user")
+    private List<Business> businesses=new ArrayList<>();
+
 
     @Override
     public String toString() {
