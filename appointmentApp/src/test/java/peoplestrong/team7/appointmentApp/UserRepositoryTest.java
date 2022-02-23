@@ -9,8 +9,6 @@ import org.springframework.test.annotation.Rollback;
 import peoplestrong.team7.appointmentApp.Models.User;
 import peoplestrong.team7.appointmentApp.Repository.UserRepository;
 
-import java.util.Optional;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
@@ -28,12 +26,12 @@ public class UserRepositoryTest {
     public void testCreateUser() {
         User user = new User();
         user.setEmail("alex@gmail.com");
-        user.setPassword("alex@123");
-        user.setFirstName("Alex");
-        user.setLastName("Acorn");
+        user.setUserPassword("alex@123");
+        user.setFirstname("Alex");
+        user.setLastname("Acorn");
 
         User savedUser = userRepository.save(user);
-        User existUser = entityManager.find(User.class, savedUser.getUserid());
+        User existUser = entityManager.find(User.class, savedUser.getUserId());
 
         assertThat(savedUser.getEmail()).isEqualTo(existUser.getEmail());
     }
