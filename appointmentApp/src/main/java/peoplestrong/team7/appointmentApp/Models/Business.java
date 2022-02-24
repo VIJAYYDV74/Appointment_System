@@ -51,7 +51,7 @@ public class Business {
     private Categories categories;
 
     //@ManyToOne
-    @JoinColumn(name = "userid", nullable = false)
+    @Column(name = "userid", nullable = false)
     private Long userId;
 
     @OneToMany(mappedBy = "businessHours", targetEntity = BusinessWorkingHours.class)

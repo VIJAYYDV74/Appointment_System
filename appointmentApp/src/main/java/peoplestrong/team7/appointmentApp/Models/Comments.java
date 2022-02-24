@@ -14,12 +14,12 @@ public class Comments {
 
 
 
-    @JoinColumn(name = "appointmentid")
+    @Column(name = "appointmentid")
     private Long appointmentId;
 
 
 
-    @JoinColumn(name = "userid")
+    @Column(name = "userid")
     private Long usersId;
 
     @Column

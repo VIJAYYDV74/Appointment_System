@@ -37,19 +37,19 @@ public class Appointment {
     private String cancellationReason;
 
     //@ManyToOne
-    @JoinColumn(name = "userid")
+    @Column(name = "userid")
     private Long usersId;
 
     //@ManyToOne
-    @JoinColumn(name = "businessid")
+    @Column(name = "businessid")
     private Long businessId;
 
     //@ManyToOne
-    @JoinColumn(name = "typeofservice")
+    @Column(name = "typeofservice")
     private Long servicesId;
 
     //@OneToOne
-    @JoinColumn(name = "paymentid")
+    @Column(name = "paymentid")
     private Long paymentsId;
 
     public Appointment() {
