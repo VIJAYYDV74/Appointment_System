@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import peoplestrong.team7.appointmentApp.Models.Business;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -19,6 +20,6 @@ public interface BusinessRepository extends JpaRepository<Business,Long> {
     int countTotalBusiness();
 
 
-    @Query(value = "select count(*) from business b where b.createdtime=2022/02/23",nativeQuery = true)
+    @Query(value = "select count(*) from business b ",nativeQuery = true)
     int countBusinessesToday();
 }

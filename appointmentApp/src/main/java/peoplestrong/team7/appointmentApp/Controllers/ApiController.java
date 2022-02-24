@@ -17,6 +17,7 @@ import java.awt.print.Pageable;
 import java.security.Principal;
 import java.sql.Time;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -153,7 +154,7 @@ public class ApiController {
         // getting user details
         Date date =new Date();
         user.totalAppointmentDetails = appointmentsRepository.TotalAppointmentByUserid(userid);
-        user.upcomingAppointmentDetails = appointmentsRepository.getUpcomingAppointments(userid,date);
+        user.upcomingAppointmentDetails = appointmentsRepository.getUpcomingAppointments(userid);
         user.totalAppointments=user.totalAppointmentDetails.size();
         user.upcomingAppointments=user.upcomingAppointmentDetails.size();
         user.totalReviews = commentRepository.getTotalReviews(userid);
@@ -174,6 +175,13 @@ public class ApiController {
     // admin dashboard
     @GetMapping("/admin_dashboard")
     public Admin adminDashboard(){
+
+        LocalDateTime now = LocalDateTime.now();
+        //System.out.println("Before Formatting: " + now);
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        String formatDateTime = now.format(format);
+        //System.out.println("After Formatting: " + formatDateTime);
+
         Admin admin= new Admin();
         admin.users= userRepository.getAllUser();
         admin.businesses = businessRepository.getAllBusiness();
@@ -182,6 +190,7 @@ public class ApiController {
         admin.totalUsers=userRepository.countTotalUser();
         admin.newUsersThisWeek= userRepository.countTotalUserByThisWeek();
         admin.totalBusinesses= businessRepository.countTotalBusiness();
+
         admin.newBusinessesToday = businessRepository.countBusinessesToday();
         admin.totalRevenue = paymentRepository.countTotalRevenue();
         admin.revenueThisWeek = paymentRepository.countRevenueThisWeek();

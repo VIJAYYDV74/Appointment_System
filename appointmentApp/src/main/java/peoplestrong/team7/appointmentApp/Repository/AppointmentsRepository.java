@@ -15,8 +15,8 @@ public interface AppointmentsRepository extends JpaRepository<Appointment,Long> 
     @Query(value = "select * from appointment a where a.userid=:userId",nativeQuery = true)
     List<Appointment> TotalAppointmentByUserid(@Param("userId") Long userId);
 
-    @Query(value = "select * from appointment a where a.userid=:userId and a.appointmentDate > :date",nativeQuery = true)
-      List<Appointment> getUpcomingAppointments(@Param("userId") Long userId , @Param("date")Date date);
+    @Query(value = "select * from appointment a where a.userid=:userId ",nativeQuery = true)
+      List<Appointment> getUpcomingAppointments(@Param("userId") Long userId );
 
     @Query(value = "select * from appointment",nativeQuery = true)
     List<Appointment> getAllAppointments();

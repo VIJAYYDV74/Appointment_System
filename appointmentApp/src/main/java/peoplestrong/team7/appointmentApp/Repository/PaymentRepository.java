@@ -5,7 +5,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import peoplestrong.team7.appointmentApp.Models.Payments;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface PaymentRepository extends JpaRepository<Payments,Long> {
@@ -16,6 +18,6 @@ public interface PaymentRepository extends JpaRepository<Payments,Long> {
     @Query(value = "select sum(amount) as totalRevenue from payments",nativeQuery = true)
     int countTotalRevenue();
 
-    @Query(value = "select sum(amount) as lastWeekRevenue from payments paymentdate=2022/02/23 ",nativeQuery = true)
+    @Query(value = "select sum(amount) as lastWeekRevenue from payments ",nativeQuery = true)
     int countRevenueThisWeek();
 }

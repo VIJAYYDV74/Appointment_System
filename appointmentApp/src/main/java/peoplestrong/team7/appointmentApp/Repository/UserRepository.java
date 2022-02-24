@@ -22,7 +22,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
       List<User> getAllUser();
     @Query(value = "select count(*) from users",nativeQuery = true)
       int countTotalUser();
-    @Query(value = "select count(*) from users where week(createdTime)=week(now())-1",nativeQuery = true)
+    @Query(value = "select count(*) from users ",nativeQuery = true)
       int countTotalUserByThisWeek();
 
 }
