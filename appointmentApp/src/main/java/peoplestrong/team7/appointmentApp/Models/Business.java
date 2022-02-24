@@ -50,9 +50,9 @@ public class Business {
     @JoinColumn(name = "businesscategory")
     private Categories categories;
 
-    @ManyToOne
+    //@ManyToOne
     @JoinColumn(name = "userid", nullable = false)
-    private User users;
+    private Long userId;
 
     @OneToMany(mappedBy = "businessHours", targetEntity = BusinessWorkingHours.class)
     private List<BusinessWorkingHours> workingHours;
@@ -65,13 +65,8 @@ public class Business {
 
     }
 
-    public Business(String businessName, String businessDescription,
-                    String businessTitle, String businessMobileNumber,
-                    String businessEmail, boolean cancellationAvailable,
-                    int slotDuration, String genderCategory,
-                    String businessImages, Categories category, User users,
-                    List<BusinessWorkingHours> workingHours,
-                    BusinessAddress businessAddress) {
+    public Business(long businessid, String businessName, String businessDescription, String businessTitle, String businessMobileNumber, String businessEmail, boolean cancellationAvailable, int slotDuration, String genderCategory, boolean emailVerified, LocalDateTime createdTime, String businessImages, Categories categories, Long userId, List<BusinessWorkingHours> workingHours, BusinessAddress businessAddress) {
+        this.businessid = businessid;
         this.businessName = businessName;
         this.businessDescription = businessDescription;
         this.businessTitle = businessTitle;
@@ -80,9 +75,11 @@ public class Business {
         this.cancellationAvailable = cancellationAvailable;
         this.slotDuration = slotDuration;
         this.genderCategory = genderCategory;
+        this.emailVerified = emailVerified;
+        this.createdTime = createdTime;
         this.businessImages = businessImages;
-        this.categories = category;
-        this.users = users;
+        this.categories = categories;
+        this.userId = userId;
         this.workingHours = workingHours;
         this.businessAddress = businessAddress;
     }
@@ -123,7 +120,9 @@ public class Business {
         return businessMobileNumber;
     }
 
-    public void setBusinessMobileNumber(String businessMobileNumber) { this.businessMobileNumber = businessMobileNumber; }
+    public void setBusinessMobileNumber(String businessMobileNumber) {
+        this.businessMobileNumber = businessMobileNumber;
+    }
 
     public String getBusinessEmail() {
         return businessEmail;
@@ -137,7 +136,9 @@ public class Business {
         return cancellationAvailable;
     }
 
-    public void setCancellationAvailable(boolean cancellationAvailable) { this.cancellationAvailable = cancellationAvailable; }
+    public void setCancellationAvailable(boolean cancellationAvailable) {
+        this.cancellationAvailable = cancellationAvailable;
+    }
 
     public int getSlotDuration() {
         return slotDuration;
@@ -187,12 +188,12 @@ public class Business {
         this.categories = categories;
     }
 
-    public User getUsers() {
-        return users;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUsers(User users) {
-        this.users = users;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public List<BusinessWorkingHours> getWorkingHours() {
@@ -214,6 +215,7 @@ public class Business {
     @Override
     public String toString() {
         return "Business{" +
+                "businessid=" + businessid +
                 ", businessName='" + businessName + '\'' +
                 ", businessDescription='" + businessDescription + '\'' +
                 ", businessTitle='" + businessTitle + '\'' +
@@ -226,8 +228,9 @@ public class Business {
                 ", createdTime=" + createdTime +
                 ", businessImages='" + businessImages + '\'' +
                 ", categories=" + categories +
-                ", users=" + users +
-                ", businessAddress" + businessAddress +
+                ", userId=" + userId +
+                ", workingHours=" + workingHours +
+                ", businessAddress=" + businessAddress +
                 '}';
     }
 }

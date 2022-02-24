@@ -13,15 +13,14 @@ public class Comments {
     private long commentid;
 
 
-    @OneToOne
+
     @JoinColumn(name = "appointmentid")
-    private Appointment appointment;
+    private Long appointmentId;
 
 
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "commentedby")
-    private User users;
+
+    @JoinColumn(name = "userid")
+    private Long usersId;
 
     @Column
     private String feedback;
@@ -32,9 +31,11 @@ public class Comments {
     public Comments() {
     }
 
-    public Comments(Appointment appointment, User users, String feedback, int rating) {
-        this.appointment = appointment;
-        this.users = users;
+
+    public Comments(long commentid, Long appointmentId, Long usersId, String feedback, int rating) {
+        this.commentid = commentid;
+        this.appointmentId = appointmentId;
+        this.usersId = usersId;
         this.feedback = feedback;
         this.rating = rating;
     }
@@ -47,20 +48,20 @@ public class Comments {
         this.commentid = commentid;
     }
 
-    public Appointment getAppointment() {
-        return appointment;
+    public Long getAppointmentId() {
+        return appointmentId;
     }
 
-    public void setAppointment(Appointment appointment) {
-        this.appointment = appointment;
+    public void setAppointmentId(Long appointmentId) {
+        this.appointmentId = appointmentId;
     }
 
-    public User getUsers() {
-        return users;
+    public Long getUsersId() {
+        return usersId;
     }
 
-    public void setUsers(User users) {
-        this.users = users;
+    public void setUsersId(Long usersId) {
+        this.usersId = usersId;
     }
 
     public String getFeedback() {
@@ -83,8 +84,8 @@ public class Comments {
     public String toString() {
         return "Comments{" +
                 "commentid=" + commentid +
-                ", appointment=" + appointment +
-                ", users=" + users +
+                ", appointmentId=" + appointmentId +
+                ", usersId=" + usersId +
                 ", feedback='" + feedback + '\'' +
                 ", rating=" + rating +
                 '}';

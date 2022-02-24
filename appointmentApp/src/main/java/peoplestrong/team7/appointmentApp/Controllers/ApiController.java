@@ -59,12 +59,12 @@ public class ApiController {
     Categories category= new Categories(1123,"Saloon");
     List<BusinessWorkingHours> workingHours=new ArrayList<>();
 
-    BusinessAddress address= new BusinessAddress("249 MG road","indore","451335","MP","INDIA",23.45,54.32);
-    Business business = new Business("motocorp","vehicle design","MOTOG","987654321","motog@gmail.com",true,2,"MAle","images",category,user,workingHours,address);
-    Services service=new Services("Saloon","hair cut",200,business);
-    Payments payment=new Payments("UPI",localDateTime,200,null);
-    Appointment appointment= new Appointment(localDateTime,localDateTime,time,"active",false,"reason",user,business,service,payment);
-    Comments comments=new Comments(appointment,user,"nice",4);
+    //BusinessAddress address= new BusinessAddress("249 MG road","indore","451335","MP","INDIA",23.45,54.32);
+    //Business business = new Business("motocorp","vehicle design","MOTOG","987654321","motog@gmail.com",true,2,"MAle","images",category,user,workingHours,address);
+    //Services service=new Services("Saloon","hair cut",200,business);
+    //Payments payment=new Payments("UPI",localDateTime,200,null);
+    //Appointment appointment= new Appointment(localDateTime,localDateTime,time,"active",false,"reason",user,business,service,payment);
+    //Comments comments=new Comments(appointment,user,"nice",4);
 
     @GetMapping ("/add")
     public List<User> addData(){

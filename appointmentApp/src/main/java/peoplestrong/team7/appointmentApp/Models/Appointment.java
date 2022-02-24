@@ -36,40 +36,39 @@ public class Appointment {
     @Column(name = "cancellationreason")
     private String cancellationReason;
 
-    @ManyToOne
+    //@ManyToOne
     @JoinColumn(name = "userid")
-    private User users;
+    private Long usersId;
 
-    @ManyToOne
+    //@ManyToOne
     @JoinColumn(name = "businessid")
-    private Business business;
+    private Long businessId;
 
-    @ManyToOne
+    //@ManyToOne
     @JoinColumn(name = "typeofservice")
-    private Services services;
+    private Long servicesId;
 
-    @OneToOne
+    //@OneToOne
     @JoinColumn(name = "paymentid")
-    private Payments payments;
+    private Long paymentsId;
 
     public Appointment() {
     }
 
-    public Appointment(LocalDateTime bookedDate, LocalDateTime appointmentDate,
-                       Time beginTime, String status,
-                       boolean isCancelled, String cancellationReason, User users,
-                       Business business, Services services, Payments payments) {
+    public Appointment(long appointmentid, LocalDateTime bookedDate, LocalDateTime appointmentDate, Time beginTime, Time endTime, int totalPrice, String status, boolean isCancelled, String cancellationReason, Long usersId, Long businessId, Long servicesId, Long paymentsId) {
+        this.appointmentid = appointmentid;
         this.bookedDate = bookedDate;
         this.appointmentDate = appointmentDate;
         this.beginTime = beginTime;
         this.endTime = endTime;
+        this.totalPrice = totalPrice;
         this.status = status;
         this.isCancelled = isCancelled;
         this.cancellationReason = cancellationReason;
-        this.users = users;
-        this.business = business;
-        this.services = services;
-        this.payments = payments;
+        this.usersId = usersId;
+        this.businessId = businessId;
+        this.servicesId = servicesId;
+        this.paymentsId = paymentsId;
     }
 
     public long getAppointmentid() {
@@ -144,36 +143,37 @@ public class Appointment {
         this.cancellationReason = cancellationReason;
     }
 
-    public User getUsers() {
-        return users;
+    public Long getUsersId() {
+        return usersId;
     }
 
-    public void setUsers(User users) {
-        this.users = users;
+    public void setUsersId(Long usersId) {
+        this.usersId = usersId;
     }
 
-    public Business getBusiness() {
-        return business;
+    public Long getBusinessId() {
+        return businessId;
     }
 
-    public void setBusiness(Business business) {
-        this.business = business;
+    public void setBusinessId(Long businessId) {
+        this.businessId = businessId;
     }
 
-    public Services getServices() {
-        return services;
+    public Long getServicesId() {
+        return servicesId;
     }
 
-    public void setServices(Services services) {
-        this.services = services;
+    public void setServicesId(Long servicesId) {
+        this.servicesId = servicesId;
     }
 
-    public Payments getPayments() {
-        return payments;
+    public Long getPaymentsId() {
+        return paymentsId;
     }
 
-    public void setPayments(Payments payments) {
-        this.payments = payments;
+    public void setPaymentsId(Long paymentsId) {
+        this.paymentsId = paymentsId;
+
     }
 
     @Override
@@ -188,10 +188,10 @@ public class Appointment {
                 ", status='" + status + '\'' +
                 ", isCancelled=" + isCancelled +
                 ", cancellationReason='" + cancellationReason + '\'' +
-                ", users=" + users +
-                ", business=" + business +
-                ", services=" + services +
-                ", payments=" + payments +
+                ", usersId=" + usersId +
+                ", businessId=" + businessId +
+                ", servicesId=" + servicesId +
+                ", paymentsId=" + paymentsId +
                 '}';
     }
 }

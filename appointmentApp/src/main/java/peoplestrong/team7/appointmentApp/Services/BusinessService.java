@@ -36,7 +36,7 @@ public class BusinessService {
     }
 
     public List<Business> getUserBusinesses(long userid){
-        return businessRepository.findByUsersUserid(userid);
+        return businessRepository.findByUserId(userid);
     }
 
     public String registerBusiness(Long userid, Business business) {
@@ -52,7 +52,7 @@ public class BusinessService {
             Categories categories = categoriesRepository.findById(id).get();
             System.out.println(categories);
 
-            business.setUsers(users);
+            business.setUserId(userid);
             business.setCreatedTime(LocalDateTime.now());
             business.setBusinessAddress(business.getBusinessAddress());
             business.setCategories(categories);

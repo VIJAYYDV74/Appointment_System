@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository
 public interface BusinessRepository extends JpaRepository<Business,Long> {
-    List<Business> findByUsersUserid(long userid);
+    List<Business> findByUserId(long userid);
 
     @Query(value = "select * from business ",nativeQuery = true)
     List<Business> getAllBusiness();
