@@ -12,9 +12,11 @@ public class Comments {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long commentid;
 
+
     @OneToOne
     @JoinColumn(name = "appointmentid")
     private Appointment appointment;
+
 
     @JsonIgnore
     @ManyToOne

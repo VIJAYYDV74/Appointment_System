@@ -201,7 +201,7 @@ public class ApiController {
         admin.totalUsers=userRepository.countTotalUser();
         admin.newUsersThisWeek= userRepository.countTotalUserByThisWeek(now.minusDays(7),now);
         admin.totalBusinesses= businessRepository.countTotalBusiness();
-
+        admin.comments= commentRepository.findAllratings();
         admin.newBusinessesToday = businessRepository.countBusinessesToday(now);
         admin.totalRevenue = paymentRepository.countTotalRevenue();
         admin.revenueThisWeek = paymentRepository.countRevenueThisWeek(now);

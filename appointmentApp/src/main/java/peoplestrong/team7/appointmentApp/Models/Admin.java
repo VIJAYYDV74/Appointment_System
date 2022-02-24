@@ -8,6 +8,7 @@ public class Admin {
     public List<Business> businesses;
     public List<Appointment> appointments;
     public List<Payments> payments;
+    public List<Comments> comments;
     public int totalUsers;
     public int newUsersThisWeek;
     public int totalBusinesses;
