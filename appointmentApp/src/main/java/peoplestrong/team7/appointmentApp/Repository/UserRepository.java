@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import peoplestrong.team7.appointmentApp.Models.User;
 import peoplestrong.team7.appointmentApp.Models.Appointment;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,7 +23,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
       List<User> getAllUser();
     @Query(value = "select count(*) from users",nativeQuery = true)
       int countTotalUser();
-    @Query(value = "select count(*) from users ",nativeQuery = true)
-      int countTotalUserByThisWeek();
+    @Query(value = "select count(*) from users where cast(createdtime as Date) BETWEEN cast( ?1 as Date) and cast( ?2 as Date)",nativeQuery = true)
+      int countTotalUserByThisWeek(LocalDateTime before,LocalDateTime now);
 
 }

@@ -155,9 +155,9 @@ public class ApiController {
         System.out.println("USERNAME"+userName);
 
         // getting user details
-        Date date =new Date();
+        LocalDateTime now = LocalDateTime.now();
         user.totalAppointmentDetails = appointmentsRepository.TotalAppointmentByUserid(userid);
-        user.upcomingAppointmentDetails = appointmentsRepository.getUpcomingAppointments(userid);
+        user.upcomingAppointmentDetails = appointmentsRepository.getUpcomingAppointments(userid,now);
         user.totalAppointments=user.totalAppointmentDetails.size();
         user.upcomingAppointments=user.upcomingAppointmentDetails.size();
         user.totalReviews = commentRepository.getTotalReviews(userid);
@@ -199,10 +199,10 @@ public class ApiController {
         admin.appointments= appointmentsRepository.getAllAppointments();
         admin.payments= paymentRepository.getAllPayments();
         admin.totalUsers=userRepository.countTotalUser();
-        admin.newUsersThisWeek= userRepository.countTotalUserByThisWeek();
+        admin.newUsersThisWeek= userRepository.countTotalUserByThisWeek(now.minusDays(7),now);
         admin.totalBusinesses= businessRepository.countTotalBusiness();
 
-        admin.newBusinessesToday = businessRepository.countBusinessesToday();
+        admin.newBusinessesToday = businessRepository.countBusinessesToday(now);
         admin.totalRevenue = paymentRepository.countTotalRevenue();
         admin.revenueThisWeek = paymentRepository.countRevenueThisWeek(now);
         return admin;

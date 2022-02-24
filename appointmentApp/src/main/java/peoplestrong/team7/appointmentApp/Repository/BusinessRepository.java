@@ -20,6 +20,6 @@ public interface BusinessRepository extends JpaRepository<Business,Long> {
     int countTotalBusiness();
 
 
-    @Query(value = "select count(*) from business b ",nativeQuery = true)
-    int countBusinessesToday();
+    @Query(value = "select count(*) from business b where cast(createdtime as Date) = cast( ?1 as Date)",nativeQuery = true)
+    int countBusinessesToday(LocalDateTime now);
 }
