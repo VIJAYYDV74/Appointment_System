@@ -18,6 +18,6 @@ public interface PaymentRepository extends JpaRepository<Payments,Long> {
     @Query(value = "select sum(amount) as totalRevenue from payments",nativeQuery = true)
     int countTotalRevenue();
 
-    @Query(value = "select sum(amount) as lastWeekRevenue from payments ",nativeQuery = true)
-    int countRevenueThisWeek();
+    @Query(value = "select sum(amount) as lastWeekRevenue from payments where cast(paymentdate as DATE) = cast( ?1 as Date) ",nativeQuery = true)
+    int countRevenueThisWeek(LocalDateTime now);
 }

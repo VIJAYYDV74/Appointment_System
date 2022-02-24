@@ -16,7 +16,10 @@ import javax.print.attribute.standard.PageRanges;
 import java.awt.print.Pageable;
 import java.security.Principal;
 import java.sql.Time;
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
@@ -177,11 +180,19 @@ public class ApiController {
     public Admin adminDashboard(){
 
         LocalDateTime now = LocalDateTime.now();
+        System.out.println(now);
+        now=now.minusDays(1);
         //System.out.println("Before Formatting: " + now);
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-        String formatDateTime = now.format(format);
-        //System.out.println("After Formatting: " + formatDateTime);
+       // DateTimeFormatter form = DateTimeFormatter.ofPattern("yyyy-mm-dd");
+        //String formatDateTime = now.format(format);
+        //now = LocalDateTime.parse(now.format(form));
+        //Date date= Date.from(now.atZone(ZoneId.systemDefault()).toInstant());
 
+
+
+        //Instant instant = now.toInstant(ZoneOffset.UTC);
+       // Date dates = Date.from(instant);
+       // System.out.println(dates);
         Admin admin= new Admin();
         admin.users= userRepository.getAllUser();
         admin.businesses = businessRepository.getAllBusiness();
@@ -193,7 +204,7 @@ public class ApiController {
 
         admin.newBusinessesToday = businessRepository.countBusinessesToday();
         admin.totalRevenue = paymentRepository.countTotalRevenue();
-        admin.revenueThisWeek = paymentRepository.countRevenueThisWeek();
+        admin.revenueThisWeek = paymentRepository.countRevenueThisWeek(now);
         return admin;
     }
 
