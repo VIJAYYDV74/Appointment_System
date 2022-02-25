@@ -20,18 +20,19 @@ public class Services {
     @Column(name = "serviceprice")
     private int servicePrice;
 
-    @ManyToOne
-    @JoinColumn(name = "businessid")
-    private Business business;
+    //@ManyToOne
+    @Column(name = "businessid")
+    private Long businessId;
 
     public Services() {
     }
 
-    public Services(String serviceName, String serviceDesc, int servicePrice, Business business) {
+    public Services(long serviceid, String serviceName, String serviceDesc, int servicePrice, Long businessId) {
+        this.serviceid = serviceid;
         this.serviceName = serviceName;
         this.serviceDesc = serviceDesc;
         this.servicePrice = servicePrice;
-        this.business = business;
+        this.businessId = businessId;
     }
 
     public long getServiceid() {
@@ -66,12 +67,12 @@ public class Services {
         this.servicePrice = servicePrice;
     }
 
-    public Business getBusiness() {
-        return business;
+    public Long getBusinessId() {
+        return businessId;
     }
 
-    public void setBusiness(Business business) {
-        this.business = business;
+    public void setBusinessId(Long businessId) {
+        this.businessId = businessId;
     }
 
     @Override
@@ -81,7 +82,7 @@ public class Services {
                 ", serviceName='" + serviceName + '\'' +
                 ", serviceDesc='" + serviceDesc + '\'' +
                 ", servicePrice=" + servicePrice +
-                ", business=" + business +
+                ", businessId=" + businessId +
                 '}';
     }
 }

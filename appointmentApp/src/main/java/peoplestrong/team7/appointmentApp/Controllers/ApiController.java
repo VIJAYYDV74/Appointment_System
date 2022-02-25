@@ -181,7 +181,7 @@ public class ApiController {
 
         LocalDateTime now = LocalDateTime.now();
         System.out.println(now);
-        now=now.minusDays(1);
+        now=now.minusDays(2);
         //System.out.println("Before Formatting: " + now);
        // DateTimeFormatter form = DateTimeFormatter.ofPattern("yyyy-mm-dd");
         //String formatDateTime = now.format(format);
