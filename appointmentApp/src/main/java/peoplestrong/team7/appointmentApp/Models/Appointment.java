@@ -48,6 +48,10 @@ public class Appointment {
     @Column(name = "typeofservice")
     private Long servicesId;
 
+    @Column(name = "servicename")
+    private String serviceName;
+
+
     //@OneToOne
     @Column(name = "paymentid")
     private Long paymentsId;
@@ -55,7 +59,7 @@ public class Appointment {
     public Appointment() {
     }
 
-    public Appointment(long appointmentid, LocalDateTime bookedDate, LocalDateTime appointmentDate, Time beginTime, Time endTime, int totalPrice, String status, boolean isCancelled, String cancellationReason, Long usersId, Long businessId, Long servicesId, Long paymentsId) {
+    public Appointment(long appointmentid, LocalDateTime bookedDate, LocalDateTime appointmentDate, Time beginTime, Time endTime, int totalPrice, String status, boolean isCancelled, String cancellationReason, Long usersId, Long businessId, Long servicesId, String serviceName, Long paymentsId) {
         this.appointmentid = appointmentid;
         this.bookedDate = bookedDate;
         this.appointmentDate = appointmentDate;
@@ -68,6 +72,7 @@ public class Appointment {
         this.usersId = usersId;
         this.businessId = businessId;
         this.servicesId = servicesId;
+        this.serviceName = serviceName;
         this.paymentsId = paymentsId;
     }
 
@@ -167,13 +172,20 @@ public class Appointment {
         this.servicesId = servicesId;
     }
 
+    public String getServiceName() {
+        return serviceName;
+    }
+
+    public void setServiceName(String serviceName) {
+        this.serviceName = serviceName;
+    }
+
     public Long getPaymentsId() {
         return paymentsId;
     }
 
     public void setPaymentsId(Long paymentsId) {
         this.paymentsId = paymentsId;
-
     }
 
     @Override
@@ -191,6 +203,7 @@ public class Appointment {
                 ", usersId=" + usersId +
                 ", businessId=" + businessId +
                 ", servicesId=" + servicesId +
+                ", serviceName='" + serviceName + '\'' +
                 ", paymentsId=" + paymentsId +
                 '}';
     }
